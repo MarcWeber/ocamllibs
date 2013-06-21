@@ -4,8 +4,13 @@ LIBS=extLib swflib unix
 
 OUTPUT=ttf
 
-all:
+all: native bytecode
+
+native:
 	ocamlopt $(FLAGS) $(FILES:=.ml) -g -a -o ttf.cmxa
+
+bytecode:
+	ocamlc $(FLAGS) $(FILES:=.ml) -g -a -o ttf.cma
 
 exec:
 	ocamlopt $(FLAGS) $(LIBS:=.cmxa) $(FILES:=.ml) main.ml -g -o $(OUTPUT)
